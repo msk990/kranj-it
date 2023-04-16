@@ -1,5 +1,5 @@
 services:
-  jujeto:
+  juje:
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -18,7 +18,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - jujeto
+      - juje
   poochie:
     container_name: postgres_demo
     image: postgres:latest
@@ -26,12 +26,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
       POSTGRES_PASSWORD: juje2020
-      # PGDATA: /data/postgres
-    volumes:
-      - postgres-db:/data/postgres
+
     ports:
       - "5432:5432"
 
-volumes:
-  postgres-db:
-    driver: local
+
