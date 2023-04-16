@@ -18,7 +18,7 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - juje
+      - jujeto
   poochie:
     container_name: postgres_demo
     image: postgres:latest
@@ -31,6 +31,7 @@ services:
       - postgres-db:/data/postgres
     ports:
       - "5432:5432"
+
 volumes:
   postgres-db:
     driver: local
