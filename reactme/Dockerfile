@@ -1,13 +1,18 @@
 # Specify a base image
 FROM node:17-alpine3.15
+WORKDIR /app
 
-#Install some dependencies
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-WORKDIR /usr/app
-COPY ./ /usr/app
-RUN npm install
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
-# Set up a default command
-CMD [ "npm","start" ]
+# add app
+COPY . ./
 
-RUN npm run build
+# start app
+CMD ["npm", "start"]
